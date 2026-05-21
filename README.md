@@ -44,7 +44,7 @@ If you haven't installed Claude Code yet, the path is short.
 
 Try this as a first prompt:
 
-> *"I want to prep a Decision Stack context bundle. I've got a vision doc and the transcript from our last quarterly planning session — I'll paste those in."*
+> *"I want to prep a Decision Stack context bundle. I've got a vision doc and the transcript from our last quarterly planning session."*
 
 The skill opens by asking what you're bringing, then extracts strategic material organised by the [ten strategic areas](https://lunastak.io/docs/decision-stack). When coverage is sufficient, run `/lunastak:export` to produce the bundle.
 
