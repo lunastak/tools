@@ -1,30 +1,34 @@
-# Decision Stack Skill
+# Lunastak
 
-A guided extraction assistant for preparing strategic context using the [Decision Stack](https://thedecisionstack.com) framework by Martin Eriksson and Jonny Schneider.
+Tools for preparing strategic context to feed [Lunastak](https://app.lunastak.io) — an AI coach that turns your strategic thinking into a Decision Stack.
 
-A Decision Stack structures strategic thinking into five layers: **Vision → Strategy → Objectives → Principles → Opportunities.** This skill helps you build the context needed to generate one — by extracting and organising your existing thinking, documents, and data.
+## Install (Claude Code)
 
-## Use it
+```bash
+claude plugin install lunastak/tools
+```
 
-Pick the variant for your platform:
+## Skills
 
-| Platform | File | How to install |
-|---|---|---|
-| Claude (skill) | [`SKILL.md`](./SKILL.md) | Install via [skills.sh](https://skills.sh/lunastak/tools/decision-stack), or paste into your Claude environment |
-| Claude Project | [`platforms/claude-project.md`](./platforms/claude-project.md) | Paste into the **Custom Instructions** field of a Claude Project |
-| Custom GPT | [`platforms/custom-gpt.md`](./platforms/custom-gpt.md) | Paste into the **Instructions** field of a Custom GPT |
-| Gemini Gem | [`platforms/gemini-gem.md`](./platforms/gemini-gem.md) | Paste into the **Instructions** field of a Gemini Gem |
+| Skill | Description |
+|---|---|
+| `lunastak:decision-stack` | Prepare a Decision Stack context bundle from documents and conversation. |
 
-For an MCP server version (Claude Desktop, Claude Code, Codex, etc.), see [`lunastak/decision-stack-mcp`](https://github.com/lunastak/decision-stack-mcp).
+## Commands
 
-## What it produces
+| Command | Description |
+|---|---|
+| `/lunastak:decision-stack` | Start a session — bring docs, or answer guided questions. |
+| `/lunastak:export` | Produce the JSON context bundle. |
+| `/lunastak:resume` | Continue from a saved bundle. |
 
-A structured JSON context bundle covering ten strategic areas. Import that bundle into [Lunastak](https://app.lunastak.io) to generate your full Decision Stack — Vision, Strategy, Objectives, Principles, and Opportunities.
+## What you produce
 
-## What this skill does NOT do
+A [context bundle](https://lunastak.io/docs/context-bundles) — import to [app.lunastak.io](https://app.lunastak.io) to generate your Decision Stack.
 
-- Generate a Decision Stack itself — that's what [Lunastak](https://app.lunastak.io) is for
-- Provide strategic advice — it's an extraction assistant, not a strategist
+## Other platforms
+
+[Gemini Gem](./platforms/gemini-gem.md) · [Custom GPT](./platforms/custom-gpt.md) · [Claude Project](./platforms/claude-project.md)
 
 ## License
 

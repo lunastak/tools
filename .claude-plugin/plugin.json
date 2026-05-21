@@ -1,0 +1,14 @@
+{
+  "name": "lunastak",
+  "version": "1.0.0",
+  "description": "Tools for preparing strategic context to feed Lunastak — an AI coach that turns your strategic thinking into a Decision Stack.",
+  "author": {
+    "name": "Jonny Schneider",
+    "email": "jonny@humventures.com.au",
+    "url": "https://lunastak.io"
+  },
+  "homepage": "https://lunastak.io",
+  "repository": "https://github.com/jonnyschneider/lunastak-tools",
+  "license": "MIT",
+  "keywords": ["lunastak", "decision-stack", "strategy", "context-bundle"]
+}
