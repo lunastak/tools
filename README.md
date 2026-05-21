@@ -98,4 +98,4 @@ Same skill, different surface. Pre-configured templates for users not on Claude 
 
 ---
 
-*Decision Stack model by [Martin Eriksson](https://thedecisionstack.com). Lunastak app and plugins by [Jonny Schneider](https://humventures.com.au/about) at [Humble Ventures](https://humventures.com.au).*
+*Decision Stack model by [Martin Eriksson](https://thedecisionstack.com). Lunastak app and plugins by [Jonny Schneider](https://linkedin.com/in/jonnyschneider) at [Humble Ventures](https://humventures.com.au).*
