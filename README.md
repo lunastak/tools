@@ -5,7 +5,8 @@ Tools for preparing strategic context to feed [Lunastak](https://app.lunastak.io
 ## Install (Claude Code)
 
 ```bash
-claude plugin install lunastak/tools
+claude plugin marketplace add lunastak/tools
+claude plugin install lunastak@lunastak-tools
 ```
 
 ## Skills

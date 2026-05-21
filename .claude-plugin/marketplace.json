@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "lunastak-tools",
+  "description": "Lunastak skills and commands for Claude Code.",
+  "owner": {
+    "name": "Jonny Schneider",
+    "email": "jonny@humventures.com.au",
+    "url": "https://lunastak.io"
+  },
+  "plugins": [
+    {
+      "name": "lunastak",
+      "description": "Prepare a Decision Stack context bundle from documents and conversation, then export to app.lunastak.io.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "homepage": "https://lunastak.io",
+      "source": "./",
+      "strict": true
+    }
+  ]
+}
