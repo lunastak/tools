@@ -61,8 +61,26 @@ const close = skill.indexOf('\n---\n', 3)
 const body = skill.indexOf('\n# ')
 if (close === -1 || (body !== -1 && close > body)) fail('SKILL.md: frontmatter does not close before the body')
 
+// agents.md: any agent handed the link (or the pasted text). Chunks only — chat assistants leave
+// dimensional tagging to Lunastak. Line 1 must stay the version H1: the platform pointers read it.
+const agentsVars = {
+  VERSION: version,
+  GENERATED_BY: `lunastak-agents@${version}`,
+  GENERATED_ON: 'chatgpt | claude.ai | gemini | claude-code | codex | cursor | other',
+  // core.md already says "come back with your bundle and …"
+  RESUME_HINT: 'bring the link lunastak.io/agents.md to continue where you left off — even in a new conversation',
+  SELF_HELPS: 'These instructions help',
+  SELF_DOES: 'These Instructions Do',
+}
+const agents = withMarker(fill(
+  [src('agents-header.md'), src('core.md'), src('output-chat.md'), src('agents-checklist.md'), src('tail.md')].join('\n'),
+  agentsVars, 'agents.md',
+))
+if (!agents.startsWith(`# Lunastak agent instructions v${version}\n`)) fail('agents.md: line 1 must be the version H1')
+
 const targets = {
   'skills/decision-stack/SKILL.md': skill,
+  'dist/agents.md': agents,
 }
 
 const stale = []
