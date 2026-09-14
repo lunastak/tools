@@ -10,7 +10,7 @@ Tools for preparing strategic context to feed [Lunastak](https://app.lunastak.io
 
 But conversation isn't always the right starting point. If you've already done the thinking — in decks, transcripts, planning sessions, half-finished memos — you don't want to recap it from memory. You want to feed Lunastak what you've already got.
 
-These instructions do that. They extract and organise strategic context from whatever you bring — in ChatGPT, Claude, Gemini, Claude Code or any other assistant — then export it as a JSON [context bundle](https://lunastak.io/docs/context-bundles) you import into [app.lunastak.io](https://app.lunastak.io).
+These instructions do that. They extract and organise strategic context from whatever you bring — in ChatGPT, Claude, Gemini, Claude Code or any other assistant — then export it as a JSON [context bundle](https://www.lunastak.io/docs/context-bundles) you import into [app.lunastak.io](https://app.lunastak.io).
 
 ---
 
@@ -54,7 +54,7 @@ Try this as a first prompt:
 
 > *"I want to prep a Decision Stack context bundle. I've got a vision doc and the transcript from our last quarterly planning session."*
 
-The skill opens by asking what you're bringing, then extracts strategic material organised by the [ten strategic areas](https://lunastak.io/docs/decision-stack). When coverage is sufficient, run `/lunastak:export` to produce the bundle.
+The skill opens by asking what you're bringing, then extracts strategic material organised by the [ten strategic areas](https://www.lunastak.io/docs/decision-stack). When coverage is sufficient, run `/lunastak:export` to produce the bundle.
 
 ---
 
@@ -86,7 +86,7 @@ The skill opens by asking what you're bringing, then extracts strategic material
 
 ## What you produce
 
-A [context bundle](https://lunastak.io/docs/context-bundles) — JSON containing the extracted strategic material. The plugin tags it by area; bundles from chat assistants are tagged by Lunastak at import. Import at [app.lunastak.io](https://app.lunastak.io) and Luna generates a Decision Stack from it.
+A [context bundle](https://www.lunastak.io/docs/context-bundles) — JSON containing the extracted strategic material. The plugin tags it by area; bundles from chat assistants are tagged by Lunastak at import. Import at [app.lunastak.io](https://app.lunastak.io) and Luna generates a Decision Stack from it.
 
 ---
 

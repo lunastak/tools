@@ -2,7 +2,7 @@
 
 The context bundle is the JSON artefact produced by `/lunastak:export` in the plugin, or by any assistant following [www.lunastak.io/agents.md](https://www.lunastak.io/agents.md) — including Lunastak's hosted GPT and Gem and the platform templates in `platforms/`. It travels from that tool into [Lunastak](https://app.lunastak.io), which uses it to generate a Decision Stack.
 
-The canonical version of this spec lives at [lunastak.io/docs/context-bundles](https://lunastak.io/docs/context-bundles). This file mirrors it for offline reference.
+The canonical version of this spec lives at [lunastak.io/docs/context-bundles](https://www.lunastak.io/docs/context-bundles). This file mirrors it for offline reference.
 
 ## Top-level shape
 

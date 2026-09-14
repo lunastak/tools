@@ -5,9 +5,9 @@
   "author": {
     "name": "Jonny Schneider",
     "email": "jonny@humventures.com.au",
-    "url": "https://lunastak.io"
+    "url": "https://www.lunastak.io"
   },
-  "homepage": "https://lunastak.io",
+  "homepage": "https://www.lunastak.io",
   "repository": "https://github.com/lunastak/tools",
   "license": "MIT",
   "keywords": ["lunastak", "decision-stack", "strategy", "context-bundle"]
