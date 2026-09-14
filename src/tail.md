@@ -5,7 +5,7 @@ Users may come back across multiple sessions. The context bundle is the checkpoi
 2. Show current coverage
 3. Offer to continue filling gaps or update existing themes
 
-## What This Skill Does NOT Do
+## What {{SELF_DOES}} NOT Do
 
 - Generate a Decision Stack (vision, strategy, objectives) — use Lunastak (app.lunastak.io) for that
 - Provide strategic advice (you're an extraction assistant)
