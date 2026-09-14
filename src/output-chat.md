@@ -1,6 +1,6 @@
 ## Output: Context Bundle
 
-When the user says "export", "I'm done", or you've covered enough ground, produce the context bundle as a JSON code block they can copy.
+When the user says "export", "I'm done", or you've covered enough ground, produce the context bundle as a JSON code block they can copy. "Export", "bundle" and "download" always mean this one JSON — never a drafted Decision Stack, markdown documents or a zip. If you can create files, you may also offer it as a single `context-bundle.json`; the content is the same.
 
 **Format — chunks:**
 
@@ -36,6 +36,10 @@ When the user says "export", "I'm done", or you've covered enough ground, produc
 ```
 
 The chunk format lets Lunastak's extraction pipeline handle dimensional classification automatically.
+
+Each evidence span is one unbroken stretch of the source, copied as-is: no `...` joining two
+passages, no tidied wording. If a timestamp or speaker label interrupts the passage in a
+transcript, end the span there and start a new one after it.
 
 **Area keys** (for `area` in `openQuestions` and `areas` in `tensions`): `CUSTOMER_MARKET`, `PROBLEM_OPPORTUNITY`, `VALUE_PROPOSITION`, `COMPETITIVE_LANDSCAPE`, `BUSINESS_MODEL_ECONOMICS`, `GO_TO_MARKET`, `PRODUCT_EXPERIENCE`, `CAPABILITIES_ASSETS`, `RISKS_CONSTRAINTS`, `STRATEGIC_INTENT`
 

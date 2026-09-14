@@ -51,6 +51,11 @@ Never hand-edit the two generated files: edit `src/`, then build.
 - **Coverage levels match the bundle format.** Gap analysis listed "thin" as a coverage level,
   which was never valid and produced invalid bundles in the wild; it now uses `rich` /
   `adequate` / `partial` / `empty`, like the coverage display and the bundle format.
+- **`agents.md` says up front that Lunastak writes the Decision Stack** and the assistant's only
+  output is the JSON bundle; "export" means that JSON, never documents or a zip. Evidence spans
+  are one unbroken stretch — no `...` joins, and they stop at a transcript's timestamp or speaker
+  label. (In the first live test ChatGPT drafted a Decision Stack and exported a zip of markdown
+  files; Gemini stitched spans across timestamps.)
 - The README no longer promotes skills.sh (its listing is a passive crawl of an old snapshot); it
   leads with the one paste instead.
 
