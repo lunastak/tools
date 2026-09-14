@@ -18,7 +18,7 @@ These instructions do that. They extract and organise strategic context from wha
 
 Paste this into a new conversation:
 
-> Read www.lunastak.io/agents.md and follow it to help me prepare my Decision Stack
+> Read https://www.lunastak.io/agents.md and follow it to help me prepare my Decision Stack.
 
 That's it — nothing to install. The assistant fetches the current instructions, works through your material with you, and hands you the bundle to import. (If it can't open links, open [www.lunastak.io/agents](https://www.lunastak.io/agents), copy the instructions, and paste them in.)
 

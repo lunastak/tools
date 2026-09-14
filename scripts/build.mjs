@@ -68,7 +68,7 @@ const agentsVars = {
   VERSION: version,
   GENERATED_BY: `lunastak-agents@${version}`,
   GENERATED_ON: 'chatgpt | claude.ai | gemini | claude-code | codex | cursor | other',
-  RESUME_HINT: 'paste your bundle together with the link www.lunastak.io/agents.md to continue where you left off — even in a new conversation',
+  RESUME_HINT: 'paste your bundle together with the link https://www.lunastak.io/agents.md to continue where you left off — even in a new conversation',
   SELF_HELPS: 'These instructions help',
   SELF_DOES: 'These Instructions Do',
 }

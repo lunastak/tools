@@ -13,7 +13,7 @@ Report `generatedBy` as `own-gpt@<version>`, taking the version from the first l
 as those instructions describe. If there is no version line, report `own-gpt` with no
 version.
 
-If you can't fetch it, ask the user to open www.lunastak.io/agents, copy the full instructions, and
+If you can't fetch it, ask the user to open https://www.lunastak.io/agents, copy the full instructions, and
 paste them here — then follow those.
 
 ---
@@ -22,7 +22,7 @@ paste them here — then follow those.
 
 - **Let it read the web.** Under **Capabilities**, tick **Web Search** so the GPT can fetch the
   instructions. If it's off, the GPT will ask you to paste them instead — that works too.
-- **Why so short?** The full instructions live at www.lunastak.io/agents.md, not here, so the
+- **Why so short?** The full instructions live at https://www.lunastak.io/agents.md, not here, so the
   8,000-character limit on GPT instructions no longer constrains our content. When Lunastak
   updates its instructions, your GPT picks up the change in its next conversation — nothing to
   re-paste.
