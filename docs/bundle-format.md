@@ -1,6 +1,6 @@
 # Context bundle format
 
-The context bundle is the JSON artefact produced by `/lunastak:export` in the plugin, or by any assistant following [lunastak.io/agents.md](https://lunastak.io/agents.md) — including Lunastak's hosted GPT and Gem and the platform templates in `platforms/`. It travels from that tool into [Lunastak](https://app.lunastak.io), which uses it to generate a Decision Stack.
+The context bundle is the JSON artefact produced by `/lunastak:export` in the plugin, or by any assistant following [www.lunastak.io/agents.md](https://www.lunastak.io/agents.md) — including Lunastak's hosted GPT and Gem and the platform templates in `platforms/`. It travels from that tool into [Lunastak](https://app.lunastak.io), which uses it to generate a Decision Stack.
 
 The canonical version of this spec lives at [lunastak.io/docs/context-bundles](https://lunastak.io/docs/context-bundles). This file mirrors it for offline reference.
 
@@ -54,7 +54,7 @@ our templates.
 | Channel | Emitted by |
 |---|---|
 | `lunastak-skill@<version>` | anything running the skill file — the Claude Code / Desktop plugin, or a skills.sh install in another harness (`generatedOn` says which) |
-| `lunastak-agents@<version>` | an assistant that read [lunastak.io/agents.md](https://lunastak.io/agents.md) (or its pasted text) directly |
+| `lunastak-agents@<version>` | an assistant that read [www.lunastak.io/agents.md](https://www.lunastak.io/agents.md) (or its pasted text) directly |
 | `lunastak-gpt@<version>` | **Lunastak's hosted Custom GPT** |
 | `lunastak-gem@<version>` | **Lunastak's hosted Gemini Gem** |
 | `own-gpt@<version>` | a Custom GPT the user built from `platforms/custom-gpt.md` |
@@ -102,7 +102,7 @@ same source in `src/` — `skills/decision-stack/SKILL.md` and `dist/agents.md`.
 | Route | Channels | Emits | Dimensions assigned by | Notes |
 |---|---|---|---|---|
 | **Plugin skill** (`lunastak:decision-stack`) | `lunastak-skill` | `themes` **and** `chunks` | the tool, at capture — `area` + `confidence` per theme | The fullest. Also the only route with `/lunastak:resume`. |
-| **`agents.md`** — any assistant handed lunastak.io/agents.md; Lunastak's hosted GPT and Gem; a Claude Project, Custom GPT or Gem built from `platforms/` (the templates are pointers to `agents.md`) | `lunastak-agents`, `lunastak-gpt`, `lunastak-gem`, `own-gpt`, `own-gem`, `own-claude-project` | `chunks` | Lunastak, by an LLM tagging pass at import | Gemini has no file uploads — users paste content. |
+| **`agents.md`** — any assistant handed www.lunastak.io/agents.md; Lunastak's hosted GPT and Gem; a Claude Project, Custom GPT or Gem built from `platforms/` (the templates are pointers to `agents.md`) | `lunastak-agents`, `lunastak-gpt`, `lunastak-gem`, `own-gpt`, `own-gem`, `own-claude-project` | `chunks` | Lunastak, by an LLM tagging pass at import | Gemini has no file uploads — users paste content. |
 
 Both shapes are first-class: `import-bundle` picks the direct area mapping when a bundle has no
 `chunks`, and the LLM tagging pass when it does. A `chunks` bundle costs one extra LLM call at

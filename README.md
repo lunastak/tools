@@ -18,9 +18,9 @@ These instructions do that. They extract and organise strategic context from wha
 
 Paste this into a new conversation:
 
-> Read lunastak.io/agents.md and follow it to help me prepare my Decision Stack
+> Read www.lunastak.io/agents.md and follow it to help me prepare my Decision Stack
 
-That's it — nothing to install. The assistant fetches the current instructions, works through your material with you, and hands you the bundle to import. (If it can't open links, open [lunastak.io/agents](https://lunastak.io/agents), copy the instructions, and paste them in.)
+That's it — nothing to install. The assistant fetches the current instructions, works through your material with you, and hands you the bundle to import. (If it can't open links, open [www.lunastak.io/agents](https://www.lunastak.io/agents), copy the instructions, and paste them in.)
 
 ## Claude Code plugin
 
@@ -92,7 +92,7 @@ A [context bundle](https://lunastak.io/docs/context-bundles) — JSON containing
 
 ## Build your own assistant
 
-Want a Gem, Custom GPT or Claude Project that always starts ready? Each template is a short pointer to [lunastak.io/agents.md](https://lunastak.io/agents.md), so your assistant picks up every update on its own:
+Want a Gem, Custom GPT or Claude Project that always starts ready? Each template is a short pointer to [www.lunastak.io/agents.md](https://www.lunastak.io/agents.md), so your assistant picks up every update on its own:
 
 - [Gemini Gem](./platforms/gemini-gem.md)
 - [Custom GPT](./platforms/custom-gpt.md)

@@ -17,11 +17,12 @@ file and refuses to run if `marketplace.json` disagrees.
 3. `node scripts/build.mjs --check` — must print "all outputs current" (CI runs it too).
 4. `claude plugin validate .`
 5. Bump `CURRENT_INSTRUCTIONS` in app.lunastak.io (`src/lib/import/instructions-version.ts`) — until
-   the app reads lunastak.io's `/agents/version.json` instead (agents design, step 4).
+   the app reads www.lunastak.io's `/agents/version.json` instead (agents design, step 4).
 6. app.lunastak.io PR #43 (new channel names + legacy map) is deployed to **production** — otherwise
    new-named bundles are stored as `unknown`.
-7. Release together with lunastak.io's `/agents` (it serves `dist/agents.md`) — the thin pointers
-   fetch it.
+7. Release together with www.lunastak.io's `/agents` (it serves `dist/agents.md` at
+   `https://www.lunastak.io/agents.md`) — the thin pointers fetch it. Always the `www` host: the
+   bare `lunastak.io` 307-redirects to it, and some agent fetchers don't follow cross-host redirects.
 
 Never hand-edit the two generated files: edit `src/`, then build.
 
@@ -35,7 +36,7 @@ Never hand-edit the two generated files: edit `src/`, then build.
   `.claude-plugin/plugin.json`. `--check` fails when either output is stale, and CI runs it on
   every push. The plugin skill and every chat route can no longer drift apart.
 - **The platform templates are thin pointers.** `platforms/claude-project.md`, `custom-gpt.md` and
-  `gemini-gem.md` now tell the assistant to fetch `https://lunastak.io/agents.md` and follow it (or
+  `gemini-gem.md` now tell the assistant to fetch `https://www.lunastak.io/agents.md` and follow it (or
   ask the user to paste it), so a self-built assistant picks up every update without re-pasting,
   and the GPT's 8,000-character instruction limit no longer constrains the content.
 - **Channels are named by owner, and every channel is versioned.** `generatedBy` is
@@ -57,7 +58,8 @@ Never hand-edit the two generated files: edit `src/`, then build.
 - **`dist/agents.md`** — the instructions for any assistant, built from the same source as the
   skill: routing (Claude Code vs everyone else), ground rules, the shared core, and the
   chunks-only output. Line 1 is `# Lunastak agent instructions v<version>`, which the pointers
-  read. lunastak.io serves it at `/agents.md`.
+  read. www.lunastak.io serves it at `/agents.md` — every pointer uses the `www` host, since the
+  bare domain redirects across hosts and some agent fetchers won't follow that.
 - **`generatedOn`** — an optional, self-reported field naming where the bundle was made
   (`claude-code`, `codex`, `cursor`, `chatgpt`, `claude.ai`, `gemini`, `other`). Analytics only.
   It fixes the case where a skills.sh install in another harness reported itself as the Claude
