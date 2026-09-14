@@ -1,0 +1,23 @@
+name: Instruction files are built from src/
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    # Runs in the mirror too (mirror.yml copies every ref, this file included), and needs no
+    # secrets — so, unlike mirror.yml, no repository guard.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      # Fails if skills/decision-stack/SKILL.md or dist/agents.md differs from what src/ builds,
+      # or if plugin.json and marketplace.json disagree on the version.
+      - run: node scripts/build.mjs --check

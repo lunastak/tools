@@ -5,15 +5,15 @@
   "owner": {
     "name": "Jonny Schneider",
     "email": "jonny@humventures.com.au",
-    "url": "https://lunastak.io"
+    "url": "https://www.lunastak.io"
   },
   "plugins": [
     {
       "name": "lunastak",
       "description": "Prepare a Decision Stack context bundle from documents and conversation, then export to app.lunastak.io.",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "category": "productivity",
-      "homepage": "https://lunastak.io",
+      "homepage": "https://www.lunastak.io",
       "source": "./",
       "strict": true
     }

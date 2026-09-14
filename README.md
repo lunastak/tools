@@ -10,13 +10,21 @@ Tools for preparing strategic context to feed [Lunastak](https://app.lunastak.io
 
 But conversation isn't always the right starting point. If you've already done the thinking — in decks, transcripts, planning sessions, half-finished memos — you don't want to recap it from memory. You want to feed Lunastak what you've already got.
 
-This plugin does that. The skill extracts and organises strategic context from whatever you bring into your Claude Code session, then exports it as a JSON [context bundle](https://lunastak.io/docs/context-bundles) you import into [app.lunastak.io](https://app.lunastak.io).
+These instructions do that. They extract and organise strategic context from whatever you bring — in ChatGPT, Claude, Gemini, Claude Code or any other assistant — then export it as a JSON [context bundle](https://www.lunastak.io/docs/context-bundles) you import into [app.lunastak.io](https://app.lunastak.io).
 
 ---
 
-## Quick start
+## Quick start — any assistant
 
-Add the marketplace, install the plugin:
+Paste this into a new conversation:
+
+> Read https://www.lunastak.io/agents.md and follow it to help me gather context for Lunastak.
+
+That's it — nothing to install. The assistant fetches the current instructions, works through your material with you, and hands you the bundle to import. (If it can't open links, open [www.lunastak.io/agents](https://www.lunastak.io/agents), copy the instructions, and paste them in.)
+
+## Claude Code plugin
+
+In Claude Code you can install the plugin instead — it adds `/lunastak:export` and `/lunastak:resume`, and tags themes by strategic area as it goes. Add the marketplace, install the plugin:
 
 ```bash
 claude plugin marketplace add lunastak/tools
@@ -30,8 +38,6 @@ In any Claude Code session:
 ```
 
 Or describe what you want — the skill auto-triggers on phrases like *"prep my decision stack"*, *"build a context bundle"*, or *"organise my strategic thinking"*.
-
-The skill is also listed on [skills.sh](https://skills.sh/lunastak/tools/decision-stack) — browse or install it from there.
 
 ---
 
@@ -48,7 +54,7 @@ Try this as a first prompt:
 
 > *"I want to prep a Decision Stack context bundle. I've got a vision doc and the transcript from our last quarterly planning session."*
 
-The skill opens by asking what you're bringing, then extracts strategic material organised by the [ten strategic areas](https://lunastak.io/docs/decision-stack). When coverage is sufficient, run `/lunastak:export` to produce the bundle.
+The skill opens by asking what you're bringing, then extracts strategic material organised by the [ten strategic areas](https://www.lunastak.io/docs/decision-stack). When coverage is sufficient, run `/lunastak:export` to produce the bundle.
 
 ---
 
@@ -80,17 +86,30 @@ The skill opens by asking what you're bringing, then extracts strategic material
 
 ## What you produce
 
-A [context bundle](https://lunastak.io/docs/context-bundles) — JSON containing the extracted strategic material, tagged by area. Import at [app.lunastak.io](https://app.lunastak.io) and Luna generates a Decision Stack from it.
+A [context bundle](https://www.lunastak.io/docs/context-bundles) — JSON containing the extracted strategic material. The plugin tags it by area; bundles from chat assistants are tagged by Lunastak at import. Import at [app.lunastak.io](https://app.lunastak.io) and Luna generates a Decision Stack from it.
 
 ---
 
-## Other platforms
+## Build your own assistant
 
-Same skill, different surface. Pre-configured templates for users not on Claude Code:
+Want a Gem, Custom GPT or Claude Project that always starts ready? Each template is a short pointer to [www.lunastak.io/agents.md](https://www.lunastak.io/agents.md), so your assistant picks up every update on its own:
 
 - [Gemini Gem](./platforms/gemini-gem.md)
 - [Custom GPT](./platforms/custom-gpt.md)
 - [Claude Project](./platforms/claude-project.md)
+
+---
+
+## Contributing / releasing
+
+The instructions have one source. Edit the files in `src/`, then run:
+
+```bash
+node scripts/build.mjs          # writes skills/decision-stack/SKILL.md and dist/agents.md
+node scripts/build.mjs --check  # fails if either is stale (CI runs this)
+```
+
+**Never hand-edit `skills/decision-stack/SKILL.md` or `dist/agents.md`** — they are generated, and the next build overwrites them. The version comes from `.claude-plugin/plugin.json`; the release checklist is at the top of [CHANGELOG.md](./CHANGELOG.md).
 
 ---
 

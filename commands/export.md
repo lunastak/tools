@@ -12,6 +12,6 @@ Before emitting the final JSON, preview the bundle:
 4. Confirm every theme/chunk carries a verbatim evidence span — copied exactly, not paraphrased.
 5. Confirm: "Ready to emit the bundle, or do you want to add anything first?"
 
-When the user confirms, emit a single JSON code block matching the schema in `docs/bundle-format.md`. After emitting, tell the user:
+When the user confirms, emit a single JSON code block matching the schema in `docs/bundle-format.md`, with `generatedBy` and `generatedOn` exactly as the skill's Output section specifies. After emitting, tell the user:
 
 > Save this as `context-bundle.json` and import it into Lunastak (https://app.lunastak.io) to generate your Decision Stack. To continue this session later, come back with the bundle and run `/lunastak:resume`.
