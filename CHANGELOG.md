@@ -59,7 +59,7 @@ Never hand-edit the two generated files: edit `src/`, then build.
   document route's summary is a line or two per area, and a user who has already asked for the
   bundle gets the JSON straight away. (In live tests ChatGPT first drafted a Decision Stack and
   exported a zip of markdown files, then wrote a long prose "context" document and called it the
-  thing to import; Gemini stitched spans across timestamps.)
+  thing to import; Gemini stitched spans across timestamps.) The chat format says to use exactly its shape — `themes`, `coverage`, `mode` and `rawSummary` belong to the plugin — and the checklist requires `generatedBy` (ChatGPT had copied the plugin shape from the public spec page and dropped it).
 - The README no longer promotes skills.sh (its listing is a passive crawl of an old snapshot); it
   leads with the one paste instead.
 

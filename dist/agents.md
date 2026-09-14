@@ -177,7 +177,9 @@ Rules:
 
 When the user says "export", "I'm done", or you've covered enough ground, produce the context bundle as a JSON code block they can copy. "Export", "bundle" and "download" always mean this one JSON — never a drafted Decision Stack, markdown documents or a zip. If you can create files, you may also offer it as a single `context-bundle.json`; the content is the same.
 
-**Format — chunks:**
+**Format — chunks.** Use exactly this shape, and nothing you find elsewhere. Lunastak's docs
+also describe `themes`, `coverage`, `mode` and `rawSummary`: those are written only by the Claude
+Code plugin — leave them out here.
 
 ```json
 {
@@ -233,8 +235,10 @@ After producing the JSON, say:
 Before you produce the JSON, confirm:
 
 - [ ] `version`, `framework` and `preparedAt` are present.
-- [ ] `generatedBy` and `generatedOn` are present.
-- [ ] `chunks` is present, and every strategic area has at least one chunk.
+- [ ] `generatedBy` is present and exactly as given above; `generatedOn` is present. Without
+      `generatedBy`, Lunastak tells the user their instructions are out of date.
+- [ ] `chunks` is present, and every strategic area has at least one chunk. No `themes`,
+      `coverage`, `mode` or `rawSummary`.
 - [ ] Every `area` key in `openQuestions` and `tensions` comes from the ten area keys above.
 - [ ] Every chunk carries at least one verbatim evidence span — one unbroken stretch, no `...`.
 - [ ] The output is the JSON bundle alone — no drafted Decision Stack, documents or zip.

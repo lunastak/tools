@@ -26,7 +26,7 @@ The canonical version of this spec lives at [lunastak.io/docs/context-bundles](h
 |---|---|---|---|
 | `version` | yes | string | Schema version. Current: `"1.0"`. Bumped only when the JSON shape changes — not the instructions version, which travels in `generatedBy`. |
 | `framework` | yes | string | Always `"decision-stack"`. |
-| `generatedBy` | optional | string | Which tool produced the bundle, as `<channel>@<instructions-version>`. See below. Bundles emitted before 2026-09-09 lack it. |
+| `generatedBy` | yes (new bundles) | string | Which tool produced the bundle, as `<channel>@<instructions-version>`. See below. Bundles emitted before 2026-09-09 lack it; Lunastak still imports them but tells the user their instructions are out of date. |
 | `generatedOn` | optional | string | Where it was made: `claude-code`, `codex`, `cursor`, `chatgpt`, `claude.ai`, `gemini` or `other`. Self-reported, analytics only. Added in 1.3.0. |
 | `preparedAt` | yes | string (ISO 8601) | When the bundle was emitted. |
 | `mode` | skill route | string | Dominant interaction shape. One of `context_dump`, `exploration`, `deep_dive`, `gap_analysis`. |
