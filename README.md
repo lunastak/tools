@@ -86,7 +86,7 @@ The skill opens by asking what you're bringing, then extracts strategic material
 
 ## What you produce
 
-A [context bundle](https://lunastak.io/docs/context-bundles) — JSON containing the extracted strategic material, tagged by area. Import at [app.lunastak.io](https://app.lunastak.io) and Luna generates a Decision Stack from it.
+A [context bundle](https://lunastak.io/docs/context-bundles) — JSON containing the extracted strategic material. The plugin tags it by area; bundles from chat assistants are tagged by Lunastak at import. Import at [app.lunastak.io](https://app.lunastak.io) and Luna generates a Decision Stack from it.
 
 ---
 

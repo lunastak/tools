@@ -119,7 +119,7 @@ Use: ● rich / ◕ adequate / ◑ partial / ○ empty
 
 ## Secret Redaction (MANDATORY)
 
-Before including any user-supplied text in `evidence`, `rawSummary`, `chunks[].content`, or anywhere else in the output bundle, you MUST redact secrets. This applies to quoted material from documents, pasted snippets, config files, emails, and transcripts.
+Before including any user-supplied text in any string field of the output bundle, you MUST redact secrets. This applies to quoted material from documents, pasted snippets, config files, emails, and transcripts.
 
 Redact (replace with `[REDACTED:<kind>]`):
 - API keys, access tokens, bearer tokens, OAuth secrets
@@ -205,7 +205,7 @@ If the user asks for a generic format (or you're unsure which dimensions apply),
 
 The `chunks` format is simpler to produce and lets Lunastak's proprietary dimensional analysis handle classification. Use `themes` (with area keys) when you're confident in the dimensional mapping; use `chunks` when the themes don't map cleanly to a single dimension.
 
-`generatedBy` is exactly `lunastak-skill@1.3.0` — copy it as written, never change or omit it. `generatedOn` names where you are running: one of `claude-code | codex | cursor | claude.ai | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
+`generatedBy` is exactly `lunastak-skill@1.3.0` — copy it as written, never change or omit it, even when resuming from an earlier bundle (write this value, never copy the old bundle's). `generatedOn` names where you are running: one of `claude-code | codex | cursor | claude.ai | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
 
 After producing the JSON, say:
 

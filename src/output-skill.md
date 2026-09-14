@@ -69,7 +69,7 @@ If the user asks for a generic format (or you're unsure which dimensions apply),
 
 The `chunks` format is simpler to produce and lets Lunastak's proprietary dimensional analysis handle classification. Use `themes` (with area keys) when you're confident in the dimensional mapping; use `chunks` when the themes don't map cleanly to a single dimension.
 
-`generatedBy` is exactly `{{GENERATED_BY}}` — copy it as written, never change or omit it. `generatedOn` names where you are running: one of `{{GENERATED_ON}}` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
+`generatedBy` is exactly `{{GENERATED_BY}}` — copy it as written, never change or omit it, even when resuming from an earlier bundle (write this value, never copy the old bundle's). `generatedOn` names where you are running: one of `{{GENERATED_ON}}` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
 
 After producing the JSON, say:
 

@@ -10,7 +10,8 @@ At the start of every conversation, fetch https://lunastak.io/agents.md and foll
 
 Report `generatedBy` as `own-claude-project@<version>`, taking the version from the first line
 of that file ("# Lunastak agent instructions vX.Y.Z" — so v1.3.0 becomes
-`own-claude-project@1.3.0`). Report `generatedOn` as those instructions describe.
+`own-claude-project@1.3.0`). Report `generatedOn` as those instructions describe. If there is no version line, report `own-claude-project` with no
+version.
 
 If you can't fetch it, ask the user to open lunastak.io/agents, copy the full instructions, and
 paste them here — then follow those.

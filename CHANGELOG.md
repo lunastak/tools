@@ -18,7 +18,9 @@ file and refuses to run if `marketplace.json` disagrees.
 4. `claude plugin validate .`
 5. Bump `CURRENT_INSTRUCTIONS` in app.lunastak.io (`src/lib/import/instructions-version.ts`) — until
    the app reads lunastak.io's `/agents/version.json` instead (agents design, step 4).
-6. Release together with lunastak.io's `/agents` (it serves `dist/agents.md`) — the thin pointers
+6. app.lunastak.io PR #43 (new channel names + legacy map) is deployed to **production** — otherwise
+   new-named bundles are stored as `unknown`.
+7. Release together with lunastak.io's `/agents` (it serves `dist/agents.md`) — the thin pointers
    fetch it.
 
 Never hand-edit the two generated files: edit `src/`, then build.

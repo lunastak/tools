@@ -10,7 +10,8 @@ At the start of every conversation, fetch https://lunastak.io/agents.md and foll
 
 Report `generatedBy` as `own-gem@<version>`, taking the version from the first line of that file
 ("# Lunastak agent instructions vX.Y.Z" — so v1.3.0 becomes `own-gem@1.3.0`). Report `generatedOn`
-as those instructions describe.
+as those instructions describe. If there is no version line, report `own-gem` with no
+version.
 
 If you can't fetch it, ask the user to open lunastak.io/agents, copy the full instructions, and
 paste them here — then follow those.

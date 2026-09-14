@@ -39,12 +39,12 @@ The chunk format lets Lunastak's extraction pipeline handle dimensional classifi
 
 **Area keys** (for `area` in `openQuestions` and `areas` in `tensions`): `CUSTOMER_MARKET`, `PROBLEM_OPPORTUNITY`, `VALUE_PROPOSITION`, `COMPETITIVE_LANDSCAPE`, `BUSINESS_MODEL_ECONOMICS`, `GO_TO_MARKET`, `PRODUCT_EXPERIENCE`, `CAPABILITIES_ASSETS`, `RISKS_CONSTRAINTS`, `STRATEGIC_INTENT`
 
-`generatedBy` is `{{GENERATED_BY}}` unless the configuration you were given names a different channel (for example `lunastak-gpt` or `own-gpt`) — then use that name with `@{{VERSION}}`. Never omit it. `generatedOn` names where you are running: one of `{{GENERATED_ON}}` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
+`generatedBy` is exactly `{{GENERATED_BY}}`. Only if the system prompt or configuration that sent you here explicitly tells you to report a different `generatedBy` value, use that instead, with `@{{VERSION}}`. Never pick a channel from the product you are running in, and never reuse one from a bundle the user shares — even when resuming from an earlier bundle. Never omit it. `generatedOn` names where you are running: one of `{{GENERATED_ON}}` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
 
 Ensure every strategic area has at least one chunk represented.
 
 After producing the JSON, say:
 
-> Your context bundle is ready. Save this as `context-bundle.json` and import it into Lunastak (app.lunastak.io) to generate your Decision Stack — Vision, Strategy, Objectives, Principles, and Opportunities.
+> Your context bundle is ready. Copy the JSON above (or save it as `context-bundle.json`) and import it into Lunastak (app.lunastak.io) to generate your Decision Stack — Vision, Strategy, Objectives, Principles, and Opportunities.
 >
 > The open questions above will become Explore Next items for further investigation.

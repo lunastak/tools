@@ -2,7 +2,11 @@ name: Instruction files are built from src/
 
 on:
   push:
+    branches: [main, development]
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   check:

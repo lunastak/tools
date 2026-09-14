@@ -46,7 +46,8 @@ const skillVars = {
   VERSION: version,
   GENERATED_BY: `lunastak-skill@${version}`,
   GENERATED_ON: 'claude-code | codex | cursor | claude.ai | other',
-  RESUME_HINT: 'use `/lunastak:resume` to continue where you left off — even in a new session',
+  // core.md: "If you want to resume later, just {{RESUME_HINT}}."
+  RESUME_HINT: 'come back with your bundle and use `/lunastak:resume` to continue where you left off — even in a new session',
   SELF_HELPS: 'This skill helps',
   SELF_DOES: 'This Skill Does',
 }
@@ -67,8 +68,7 @@ const agentsVars = {
   VERSION: version,
   GENERATED_BY: `lunastak-agents@${version}`,
   GENERATED_ON: 'chatgpt | claude.ai | gemini | claude-code | codex | cursor | other',
-  // core.md already says "come back with your bundle and …"
-  RESUME_HINT: 'bring the link lunastak.io/agents.md to continue where you left off — even in a new conversation',
+  RESUME_HINT: 'paste your bundle together with the link lunastak.io/agents.md to continue where you left off — even in a new conversation',
   SELF_HELPS: 'These instructions help',
   SELF_DOES: 'These Instructions Do',
 }
