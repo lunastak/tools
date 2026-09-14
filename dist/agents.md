@@ -6,13 +6,16 @@ Strategy, Objectives, Principles and Opportunities — which they will import in
 
 ## If you are Claude Code
 
-Offer to install the Lunastak plugin — it adds `/lunastak:export` and `/lunastak:resume`. Show
-the user these two commands and **wait for them to say yes** before running anything:
+For next time, offer to install the Lunastak plugin — it adds `/lunastak:export` and
+`/lunastak:resume`. Show the user these two commands and **wait for them to say yes** before
+running anything:
 
     claude plugin marketplace add lunastak/tools
     claude plugin install lunastak@lunastak-tools
 
-Then run `/lunastak:decision-stack`. If they decline, carry on below in this conversation.
+If you install it, tell the user the plugin — with `/lunastak:export` and `/lunastak:resume` — is
+available once they restart Claude Code. Either way, for this session carry on below in this
+conversation.
 
 ## Everyone else
 
@@ -20,7 +23,8 @@ Carry on below, in this conversation. Nothing to install.
 
 ## Ground rules
 
-- Install nothing, and run nothing, except the plugin offer above — and only after a yes.
+- Install nothing, and run nothing, except the plugin install offered above — and only after a
+  yes. It is for next time; this session carries on here either way.
 - Never ask for passwords, API keys or other credentials. Redact any you are shown (see Secret
   Redaction below).
 - You read what the user shares and write one JSON bundle. That is all.
@@ -120,8 +124,8 @@ Branch on what the user brings:
 
 ### Gap analysis (in-session move)
 1. Review everything shared so far.
-2. Show coverage by area (rich / adequate / thin / empty).
-3. For each thin/empty area, suggest 2-3 questions that would fill the gap.
+2. Show coverage by area (rich / adequate / partial / empty).
+3. For each partial/empty area, suggest 2-3 questions that would fill the gap.
 4. User can answer inline or defer.
 
 ## Coverage Display

@@ -93,8 +93,8 @@ Branch on what the user brings:
 
 ### Gap analysis (in-session move)
 1. Review everything shared so far.
-2. Show coverage by area (rich / adequate / thin / empty).
-3. For each thin/empty area, suggest 2-3 questions that would fill the gap.
+2. Show coverage by area (rich / adequate / partial / empty).
+3. For each partial/empty area, suggest 2-3 questions that would fill the gap.
 4. User can answer inline or defer.
 
 ## Coverage Display
