@@ -1,6 +1,6 @@
 # Context bundle format
 
-The context bundle is the JSON artefact produced by `/lunastak:export`. It travels from the extraction tool (this plugin, a Custom GPT, a Gemini Gem) into [Lunastak](https://app.lunastak.io), which uses it to generate a Decision Stack.
+The context bundle is the JSON artefact produced by `/lunastak:export` in the plugin, or by any assistant following [lunastak.io/agents.md](https://lunastak.io/agents.md) — including Lunastak's hosted GPT and Gem and the platform templates in `platforms/`. It travels from that tool into [Lunastak](https://app.lunastak.io), which uses it to generate a Decision Stack.
 
 The canonical version of this spec lives at [lunastak.io/docs/context-bundles](https://lunastak.io/docs/context-bundles). This file mirrors it for offline reference.
 
@@ -10,6 +10,8 @@ The canonical version of this spec lives at [lunastak.io/docs/context-bundles](h
 {
   "version": "1.0",
   "framework": "decision-stack",
+  "generatedBy": "<channel>@<version>",
+  "generatedOn": "claude-code | codex | cursor | chatgpt | claude.ai | gemini | other",
   "preparedAt": "2026-05-21T10:00:00Z",
   "mode": "context_dump | exploration | deep_dive | gap_analysis",
   "coverage": { ... },
@@ -22,79 +24,111 @@ The canonical version of this spec lives at [lunastak.io/docs/context-bundles](h
 
 | Field | Required | Type | Notes |
 |---|---|---|---|
-| `version` | yes | string | Schema version. Current: `"1.0"`. |
+| `version` | yes | string | Schema version. Current: `"1.0"`. Bumped only when the JSON shape changes — not the instructions version, which travels in `generatedBy`. |
 | `framework` | yes | string | Always `"decision-stack"`. |
-| `generatedBy` | optional | string | Which tool produced the bundle. See below. Bundles emitted before 2026-09-09 lack it. |
+| `generatedBy` | optional | string | Which tool produced the bundle, as `<channel>@<instructions-version>`. See below. Bundles emitted before 2026-09-09 lack it. |
+| `generatedOn` | optional | string | Where it was made: `claude-code`, `codex`, `cursor`, `chatgpt`, `claude.ai`, `gemini` or `other`. Self-reported, analytics only. Added in 1.3.0. |
 | `preparedAt` | yes | string (ISO 8601) | When the bundle was emitted. |
-| `mode` | yes | string | Dominant interaction shape. One of `context_dump`, `exploration`, `deep_dive`, `gap_analysis`. |
-| `coverage` | yes | object | Coverage per strategic area. See below. |
+| `mode` | skill route | string | Dominant interaction shape. One of `context_dump`, `exploration`, `deep_dive`, `gap_analysis`. |
+| `coverage` | skill route | object | Coverage per strategic area. See below. |
 | `themes` | one of | array | Structured themes tagged by area. Use this OR `chunks`. |
 | `chunks` | one of | array | Untagged content blocks. Use when dimensional mapping is unclear. |
 | `openQuestions` | optional | array | Questions surfaced for further exploration. |
 | `tensions` | optional | array | Contradictions or trade-offs noted during the session. |
-| `rawSummary` | yes | string | Human-readable summary of the whole session. |
+| `rawSummary` | skill route | string | Human-readable summary of the whole session. |
+
+**skill route** = the plugin skill always emits it; the `agents.md` route (chunks only) does not.
+Lunastak's importer treats all three as optional — the one thing it rejects is a bundle with
+neither a non-empty `themes` nor a non-empty `chunks`.
 
 ## `generatedBy` — which tool made this bundle
 
-Optional, added 2026-09-09. Backwards compatible: absent is valid, and every bundle emitted before
-that date lacks it.
+Optional, added 2026-09-09 (1.2.0); channels renamed and every channel versioned in 1.3.0.
+Backwards compatible: absent is valid, and every bundle emitted before 2026-09-09 lacks it.
 
-| Value | Emitted by |
+The value is `<channel>@<instructions-version>`, where the version is the tools release
+(`.claude-plugin/plugin.json`) the instructions came from. The channel names **who configured the
+assistant**: `lunastak-*` = Lunastak hosts or controls it; `own-*` = the user set it up from one of
+our templates.
+
+| Channel | Emitted by |
 |---|---|
-| `claude-code-plugin@<version>` | the Claude Code / Desktop plugin |
-| `claude-project` | a Claude Project built from `platforms/claude-project.md` |
-| `custom-gpt` | a Custom GPT built from `platforms/custom-gpt.md` |
-| `custom-gpt-published` | **the published Lunastak GPT** |
-| `gemini-gem` | a Gem built from `platforms/gemini-gem.md` |
-| `gemini-gem-published` | **the published Lunastak Gem** |
+| `lunastak-skill@<version>` | anything running the skill file — the Claude Code / Desktop plugin, or a skills.sh install in another harness (`generatedOn` says which) |
+| `lunastak-agents@<version>` | an assistant that read [lunastak.io/agents.md](https://lunastak.io/agents.md) (or its pasted text) directly |
+| `lunastak-gpt@<version>` | **Lunastak's hosted Custom GPT** |
+| `lunastak-gem@<version>` | **Lunastak's hosted Gemini Gem** |
+| `own-gpt@<version>` | a Custom GPT the user built from `platforms/custom-gpt.md` |
+| `own-gem@<version>` | a Gem the user built from `platforms/gemini-gem.md` |
+| `own-claude-project@<version>` | a Claude Project the user built from `platforms/claude-project.md` |
 
-The `-published` values live ONLY in the two hosted assistants' own configuration, never in this
-repo's templates. That is deliberate and it is the only way a hosted assistant can be told from a
-self-built one — the distinction cannot be inferred from bundle content. **Regenerating a published
-assistant from its template would silently erase it.**
+The `lunastak-gpt` / `lunastak-gem` names live ONLY in the two hosted assistants' own
+configuration, never in this repo's templates. That is deliberate and it is the only way a hosted
+assistant can be told from a self-built one — the distinction cannot be inferred from bundle
+content, and a verbatim copy of the hosted configuration would claim `lunastak-*` too.
+**Regenerating a hosted assistant from its template would silently turn it into `own-*`.**
+
+### Legacy names (before 1.3.0)
+
+Bundles made with older instructions still carry these, and stored rows already hold them.
+Lunastak (app.lunastak.io) keeps accepting them and maps each to its new channel, so nothing
+already recorded becomes `unknown`.
+
+| Legacy value | Now |
+|---|---|
+| `claude-code-plugin@<version>` | `lunastak-skill` |
+| `custom-gpt-published` | `lunastak-gpt` |
+| `gemini-gem-published` | `lunastak-gem` |
+| `custom-gpt` | `own-gpt` |
+| `gemini-gem` | `own-gem` |
+| `claude-project` | `own-claude-project` |
 
 Lunastak validates against this closed set and stores anything else as `unknown`; the value is
 self-reported by a model, so it is never trusted as free text. Absent is stored as null, which
 means "unknown" and is not a category.
 
+### `generatedOn` — where it was made
+
+Optional, added in 1.3.0: the harness the bundle was made in. One of `claude-code`, `codex`,
+`cursor`, `chatgpt`, `claude.ai`, `gemini`, `other`. The skill offers `claude-code | codex | cursor
+| claude.ai | other`; `agents.md` offers all seven. Like `generatedBy` it is self-reported and used
+for analytics only — anything outside the set is stored as `unknown`.
+
 ## Which route emits which format
 
-Four tools produce bundles and they are **not equivalent**. This is deliberate, and worth knowing
-before you compare two bundles and wonder why one is richer.
+Two sets of instructions produce bundles, and they are **not equivalent**. This is deliberate, and
+worth knowing before you compare two bundles and wonder why one is richer. Both are built from the
+same source in `src/` — `skills/decision-stack/SKILL.md` and `dist/agents.md`.
 
-| Route | Emits | Dimensions assigned by | Notes |
-|---|---|---|---|
-| **Claude Code / Desktop plugin** (`lunastak:decision-stack`) | `themes` **and** `chunks` | the tool, at capture — `area` + `confidence` per theme | The fullest. Also the only route with `/lunastak:resume`. |
-| **Claude Project** (self-built from template) | `chunks` | Lunastak, by an LLM tagging pass at import | |
-| **Custom GPT** (self-built or the published one) | `chunks` | Lunastak, by an LLM tagging pass at import | |
-| **Gemini Gem** (self-built or the published one) | `chunks` | Lunastak, by an LLM tagging pass at import | No file uploads on the platform — users paste content. |
+| Route | Channels | Emits | Dimensions assigned by | Notes |
+|---|---|---|---|---|
+| **Plugin skill** (`lunastak:decision-stack`) | `lunastak-skill` | `themes` **and** `chunks` | the tool, at capture — `area` + `confidence` per theme | The fullest. Also the only route with `/lunastak:resume`. |
+| **`agents.md`** — any assistant handed lunastak.io/agents.md; Lunastak's hosted GPT and Gem; a Claude Project, Custom GPT or Gem built from `platforms/` (the templates are pointers to `agents.md`) | `lunastak-agents`, `lunastak-gpt`, `lunastak-gem`, `own-gpt`, `own-gem`, `own-claude-project` | `chunks` | Lunastak, by an LLM tagging pass at import | Gemini has no file uploads — users paste content. |
 
 Both shapes are first-class: `import-bundle` picks the direct area mapping when a bundle has no
 `chunks`, and the LLM tagging pass when it does. A `chunks` bundle costs one extra LLM call at
 import and has its dimensions **inferred** rather than captured; a `themes` bundle carries the
 tagging the user actually saw.
 
-### Why the platform variants stop at `chunks`
+### Why the `agents.md` route stops at `chunks`
 
-Two reasons, and only one of them is a hard limit.
+Two reasons, and only one of them was ever a hard limit.
 
 **The deliberate one.** `chunks` hands dimensional classification to Lunastak, which tags with the
 same analyser it uses for conversations and documents. A GPT or a Gem is not Claude, and its
 guess at which of ten areas a theme belongs to is the weakest link in the chain. Letting the app
-tag keeps every self-built route producing identical bundles, and keeps the tagging consistent
-with everything else in a project.
+tag keeps every chat route producing identical bundles, and keeps the tagging consistent with
+everything else in a project.
 
-**The ceiling.** A ChatGPT Custom GPT caps its Instructions field at **8,000 characters**, and
-the field truncates silently — losing the tail of the instructions costs far more than a richer
-format gains. The long-form `custom-gpt.md` ran to ~7,800 characters, so the dimensional format
-(the area keys, the `confidence` scale, and the guidance for choosing between the two shapes —
-roughly 600 characters) genuinely did not fit.
+**The ceiling — gone since 1.3.0.** A ChatGPT Custom GPT caps its Instructions field at **8,000
+characters**, and the field truncates silently. When each platform template carried the full
+instructions, the dimensional format (the area keys, the `confidence` scale, and the guidance for
+choosing between the two shapes) did not fit. The templates are now short pointers to
+`agents.md`, so the limit no longer constrains our content.
 
-That is no longer the binding constraint: the condensed instruction sets land around 5,000
-characters, leaving ~3,000 spare. **So if the platform variants should emit `themes`, that is now
-a product decision rather than a technical one** — and it should be taken for all three at once,
-or not at all. Whatever is decided, keep the Claude Project, Custom GPT and Gemini Gem aligned:
-a user who builds their own should get the same bundle whichever platform they picked.
+**So if the `agents.md` route should emit `themes`, that is a product decision rather than a
+technical one** — and because every chat route now follows the one file, it is taken for all of
+them at once. 1.3.0 deliberately did not change it: that release moved where the instructions live
+and what the channels are called, not what the bundles contain.
 
 ## Strategic area keys
 
@@ -172,15 +206,20 @@ These become Explore Next items in Lunastak.
 
 ## Secrets
 
-Bundles must not contain secrets. The `decision-stack` skill enforces redaction before any user-supplied text is included. Replace any detected secret with `[REDACTED:<kind>]` and note that a secret was redacted. See the **Secret Redaction** section of `skills/decision-stack/SKILL.md` for the full list.
+Bundles must not contain secrets. The `decision-stack` skill enforces redaction before any user-supplied text is included. Replace any detected secret with `[REDACTED:<kind>]` and note that a secret was redacted. See the **Secret Redaction** section of `skills/decision-stack/SKILL.md` (the same text is in `dist/agents.md`) for the full list.
 
 ## Validation checklist
 
 Before emitting, confirm:
 
-- [ ] `version`, `framework`, `preparedAt`, `mode`, `coverage`, `rawSummary` are present.
-- [ ] Either `themes` or `chunks` is present (or both).
+- [ ] `version`, `framework` and `preparedAt` are present.
+- [ ] `generatedBy` and `generatedOn` are present.
+- [ ] Either `themes` or `chunks` is present (or both), and not empty.
+- [ ] Skill route only: `mode`, `coverage` and `rawSummary` are present.
 - [ ] All `area` and `coverage` keys come from the ten strategic-area keys above.
 - [ ] Every theme/chunk carries at least one verbatim evidence span.
 - [ ] No raw secrets in any string field.
 - [ ] JSON is valid (parseable).
+
+`dist/agents.md` carries a chat-adapted copy of this list (from `src/agents-checklist.md`): chunks
+only, no `mode` / `coverage` / `rawSummary`.

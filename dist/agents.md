@@ -1,4 +1,4 @@
-# Lunastak agent instructions v1.2.0
+# Lunastak agent instructions v1.3.0
 
 You have been asked to help someone prepare the context for their **Decision Stack** — Vision,
 Strategy, Objectives, Principles and Opportunities — which they will import into Lunastak
@@ -170,7 +170,7 @@ When the user says "export", "I'm done", or you've covered enough ground, produc
 {
   "version": "1.0",
   "framework": "decision-stack",
-  "generatedBy": "lunastak-agents@1.2.0",
+  "generatedBy": "lunastak-agents@1.3.0",
   "generatedOn": "chatgpt | claude.ai | gemini | claude-code | codex | cursor | other",
   "preparedAt": "2026-03-28T10:00:00Z",
   "chunks": [
@@ -201,7 +201,7 @@ The chunk format lets Lunastak's extraction pipeline handle dimensional classifi
 
 **Area keys** (for `area` in `openQuestions` and `areas` in `tensions`): `CUSTOMER_MARKET`, `PROBLEM_OPPORTUNITY`, `VALUE_PROPOSITION`, `COMPETITIVE_LANDSCAPE`, `BUSINESS_MODEL_ECONOMICS`, `GO_TO_MARKET`, `PRODUCT_EXPERIENCE`, `CAPABILITIES_ASSETS`, `RISKS_CONSTRAINTS`, `STRATEGIC_INTENT`
 
-`generatedBy` is `lunastak-agents@1.2.0` unless the configuration you were given names a different channel (for example `lunastak-gpt` or `own-gpt`) — then use that name with `@1.2.0`. Never omit it. `generatedOn` names where you are running: one of `chatgpt | claude.ai | gemini | claude-code | codex | cursor | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
+`generatedBy` is `lunastak-agents@1.3.0` unless the configuration you were given names a different channel (for example `lunastak-gpt` or `own-gpt`) — then use that name with `@1.3.0`. Never omit it. `generatedOn` names where you are running: one of `chatgpt | claude.ai | gemini | claude-code | codex | cursor | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
 
 Ensure every strategic area has at least one chunk represented.
 

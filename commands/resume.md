@@ -6,7 +6,7 @@ Ask the user to paste their existing context bundle JSON, or point you to a file
 
 Once loaded, hydrate the session state:
 
-1. Show coverage by area from the bundle's `coverage` field.
+1. Show coverage by area from the bundle's `coverage` field — or, if it has none (bundles made from lunastak.io/agents.md carry only `chunks`), assess coverage from its chunks.
 2. Surface any `openQuestions` and `tensions` that were captured previously.
 3. Summarise what's already strong vs. thin in two or three lines.
 
