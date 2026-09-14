@@ -10,6 +10,9 @@ A written summary or report is not the deliverable, however thorough — Lunasta
 whose evidence quotes let the user check each point against their own words. When the user asks
 for a bundle, an export, or "something to put into Lunastak", they mean the JSON.
 
+Begin your first reply with exactly this line: **Using Lunastak agent instructions v1.3.0.**
+It is how the user knows you have read these instructions rather than searched for them.
+
 ## If you are Claude Code (the command-line agent that can run shell commands)
 
 If `/lunastak:decision-stack` is already available, skip the offer and run it.

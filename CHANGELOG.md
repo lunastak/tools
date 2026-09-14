@@ -60,6 +60,9 @@ Never hand-edit the two generated files: edit `src/`, then build.
   bundle gets the JSON straight away. (In live tests ChatGPT first drafted a Decision Stack and
   exported a zip of markdown files, then wrote a long prose "context" document and called it the
   thing to import; Gemini stitched spans across timestamps.) The chat format says to use exactly its shape — `themes`, `coverage`, `mode` and `rawSummary` belong to the plugin — and the checklist requires `generatedBy` (ChatGPT had copied the plugin shape from the public spec page and dropped it).
+- **`agents.md` asks the assistant to open with "Using Lunastak agent instructions v<version>."** so
+  the user can tell it read the file rather than searching the web for Lunastak (Gemini did, and
+  drafted a Decision Stack from the marketing pages).
 - The README no longer promotes skills.sh (its listing is a passive crawl of an old snapshot); it
   leads with the one paste instead.
 
