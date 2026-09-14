@@ -92,7 +92,7 @@ A [context bundle](https://www.lunastak.io/docs/context-bundles) — JSON contai
 
 ## Build your own assistant
 
-Want a Gem, Custom GPT or Claude Project that always starts ready? Each template is a short pointer to [www.lunastak.io/agents.md](https://www.lunastak.io/agents.md), so your assistant picks up every update on its own:
+Want a Gem, Custom GPT or Claude Project that always starts ready? The GPT and Claude Project templates are short pointers to [www.lunastak.io/agents.md](https://www.lunastak.io/agents.md), so they pick up every update on their own. A Gem can't open links, so its template has you attach the file instead:
 
 - [Gemini Gem](./platforms/gemini-gem.md)
 - [Custom GPT](./platforms/custom-gpt.md)

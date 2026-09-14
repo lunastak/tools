@@ -16,17 +16,28 @@ file and refuses to run if `marketplace.json` disagrees.
 2. `node scripts/build.mjs` — regenerates `skills/decision-stack/SKILL.md` and `dist/agents.md`.
 3. `node scripts/build.mjs --check` — must print "all outputs current" (CI runs it too).
 4. `claude plugin validate .`
-5. Bump `CURRENT_INSTRUCTIONS` in app.lunastak.io (`src/lib/import/instructions-version.ts`) — until
-   the app reads www.lunastak.io's `/agents/version.json` instead (agents design, step 4).
-6. app.lunastak.io PR #43 (new channel names + legacy map) is deployed to **production** — otherwise
-   new-named bundles are stored as `unknown`.
-7. Release together with www.lunastak.io's `/agents` (it serves `dist/agents.md` at
-   `https://www.lunastak.io/agents.md`) — the thin pointers fetch it. Always the `www` host: the
-   bare `lunastak.io` 307-redirects to it, and some agent fetchers don't follow cross-host redirects.
+5. Release together with www.lunastak.io's `/agents`: in that repo, `node scripts/sync-agents.mjs --ref v<version>`
+   after tagging. It serves `dist/agents.md` at `https://www.lunastak.io/agents.md`, which the
+   thin pointers fetch, and `/agents/version.json`, which app.lunastak.io reads to tell users an
+   update is out. Always the `www` host: the bare `lunastak.io` 307-redirects to it, and some agent
+   fetchers don't follow cross-host redirects.
+6. **Re-upload `dist/agents.md` to Lunastak's hosted Gem** (its Knowledge; replace the old file).
+   Gems can't fetch URLs, so the Gem carries the file itself and stays on the old version until
+   this step.
+7. When you next touch app.lunastak.io's `src/lib/import/instructions-version.ts`, move its
+   fallback `CURRENT_INSTRUCTIONS` to the new version.
 
 Never hand-edit the two generated files: edit `src/`, then build.
 
 ## [Unreleased]
+
+### Changed
+- **Gems carry the instructions as a knowledge file.** A Gem can't fetch URLs — in live testing
+  Lunastak's hosted Gem said so and asked for the instructions to be pasted in — so
+  `platforms/gemini-gem.md` now has you upload `agents.md` to the Gem's Knowledge instead of
+  pointing at the URL, and the release checklist re-uploads it to the hosted Gem. The Custom GPT
+  and Claude Project templates stay thin pointers.
+- `docs/bundle-format.md` no longer says Gemini has no file uploads — it has.
 
 ## [1.3.0] — 2026-09-15
 

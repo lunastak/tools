@@ -102,7 +102,7 @@ same source in `src/` — `skills/decision-stack/SKILL.md` and `dist/agents.md`.
 | Route | Channels | Emits | Dimensions assigned by | Notes |
 |---|---|---|---|---|
 | **Plugin skill** (`lunastak:decision-stack`) | `lunastak-skill` | `themes` **and** `chunks` | the tool, at capture — `area` + `confidence` per theme | The fullest. Also the only route with `/lunastak:resume`. |
-| **`agents.md`** — any assistant handed https://www.lunastak.io/agents.md; Lunastak's hosted GPT and Gem; a Claude Project, Custom GPT or Gem built from `platforms/` (the templates are pointers to `agents.md`) | `lunastak-agents`, `lunastak-gpt`, `lunastak-gem`, `own-gpt`, `own-gem`, `own-claude-project` | `chunks` | Lunastak, by an LLM tagging pass at import | Gemini has no file uploads — users paste content. |
+| **`agents.md`** — any assistant handed https://www.lunastak.io/agents.md; Lunastak's hosted GPT and Gem; a Claude Project, Custom GPT or Gem built from `platforms/` (the GPT and Project templates point at `agents.md`; the Gem attaches it) | `lunastak-agents`, `lunastak-gpt`, `lunastak-gem`, `own-gpt`, `own-gem`, `own-claude-project` | `chunks` | Lunastak, by an LLM tagging pass at import | Gems can't fetch URLs, so a Gem carries `agents.md` as a knowledge file. |
 
 Both shapes are first-class: `import-bundle` picks the direct area mapping when a bundle has no
 `chunks`, and the LLM tagging pass when it does. A `chunks` bundle costs one extra LLM call at
