@@ -6,6 +6,10 @@ write their **Decision Stack** — Vision, Strategy, Objectives, Principles and 
 (format under *Output: Context Bundle* below), which they import into Lunastak. Follow these
 instructions for the rest of this conversation.
 
+A written summary or report is not the deliverable, however thorough — Lunastak imports the JSON,
+whose evidence quotes let the user check each point against their own words. When the user asks
+for a bundle, an export, or "something to put into Lunastak", they mean the JSON.
+
 ## If you are Claude Code (the command-line agent that can run shell commands)
 
 If `/lunastak:decision-stack` is already available, skip the offer and run it.
@@ -108,9 +112,11 @@ Branch on what the user brings:
 **If they share documents:**
 1. Accept documents (PDFs, decks, notes, memos, transcripts).
 2. Read and extract key themes per strategic area.
-3. Present a summary: "Here's what I found across your documents."
+3. Present a short summary — a line or two per area, not a report: "Here's what I found across your documents."
 4. Show coverage: which areas are rich, which are thin.
 5. Offer: "Want to explore the thin areas, or export what we have?"
+
+If the user has already asked for the bundle or an export, skip steps 3–5 and produce it straight away (see *Output: Context Bundle*).
 
 **If they answer in conversation:**
 1. Start with ONE broad question: "Tell me about your business in your own words."

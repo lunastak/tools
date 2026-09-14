@@ -55,8 +55,11 @@ Never hand-edit the two generated files: edit `src/`, then build.
   output is the JSON bundle; "export" means that JSON, never documents or a zip. Evidence spans
   are one unbroken stretch — no `...` joins, and they stop at a transcript's timestamp or speaker
   label. The one-paste line now reads "…follow it to help me gather context for Lunastak" rather
-  than "…prepare my Decision Stack". (In the first live test ChatGPT drafted a Decision Stack and
-  exported a zip of markdown files; Gemini stitched spans across timestamps.)
+  than "…prepare my Decision Stack". A written summary is not the deliverable either: the
+  document route's summary is a line or two per area, and a user who has already asked for the
+  bundle gets the JSON straight away. (In live tests ChatGPT first drafted a Decision Stack and
+  exported a zip of markdown files, then wrote a long prose "context" document and called it the
+  thing to import; Gemini stitched spans across timestamps.)
 - The README no longer promotes skills.sh (its listing is a passive crawl of an old snapshot); it
   leads with the one paste instead.
 

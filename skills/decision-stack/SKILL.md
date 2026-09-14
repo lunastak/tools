@@ -75,9 +75,11 @@ Branch on what the user brings:
 **If they share documents:**
 1. Accept documents (PDFs, decks, notes, memos, transcripts).
 2. Read and extract key themes per strategic area.
-3. Present a summary: "Here's what I found across your documents."
+3. Present a short summary — a line or two per area, not a report: "Here's what I found across your documents."
 4. Show coverage: which areas are rich, which are thin.
 5. Offer: "Want to explore the thin areas, or export what we have?"
+
+If the user has already asked for the bundle or an export, skip steps 3–5 and produce it straight away (see *Output: Context Bundle*).
 
 **If they answer in conversation:**
 1. Start with ONE broad question: "Tell me about your business in your own words."

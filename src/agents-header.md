@@ -6,6 +6,10 @@ write their **Decision Stack** — Vision, Strategy, Objectives, Principles and 
 (format under *Output: Context Bundle* below), which they import into Lunastak. Follow these
 instructions for the rest of this conversation.
 
+A written summary or report is not the deliverable, however thorough — Lunastak imports the JSON,
+whose evidence quotes let the user check each point against their own words. When the user asks
+for a bundle, an export, or "something to put into Lunastak", they mean the JSON.
+
 ## If you are Claude Code (the command-line agent that can run shell commands)
 
 If `/lunastak:decision-stack` is already available, skip the offer and run it.
