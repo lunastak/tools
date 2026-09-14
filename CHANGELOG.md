@@ -28,7 +28,7 @@ Never hand-edit the two generated files: edit `src/`, then build.
 
 ## [Unreleased]
 
-## [1.3.0] — 2026-09-14
+## [1.3.0] — 2026-09-15
 
 ### Changed
 - **One source, one build.** The instructions now live once, in `src/`, and
