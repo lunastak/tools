@@ -33,6 +33,12 @@ Never hand-edit the two generated files: edit `src/`, then build.
 
 ## [Unreleased]
 
+### Docs
+- `docs/bundle-format.md` is the canonical bundle spec. www.lunastak.io/docs/context-bundles (site
+  1.5.0) now explains bundles for people and deliberately doesn't document the JSON; this file said
+  it mirrored that page. Only the opening paragraph changes, not the schema, so it ships with the
+  next version rather than prompting every install to update.
+
 ## [1.3.1] — 2026-09-15
 
 ### Fixed
