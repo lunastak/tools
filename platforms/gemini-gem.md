@@ -10,7 +10,7 @@ A Gem can't open links, so it carries Lunastak's instructions as a knowledge fil
 
 ---
 
-Follow the Lunastak agent instructions in the attached knowledge file (named agents-v<version>.md, e.g. agents-v1.3.0.md) for the whole conversation. If more than one is attached, follow the highest version.
+Follow the Lunastak agent instructions in the attached knowledge file (named agents-v<version>, e.g. agents-v1.3.0.md) for the whole conversation. If more than one is attached, follow the highest version.
 
 Report `generatedBy` as `own-gem@<version>`, taking the version from the first line of that file
 ("# Lunastak agent instructions vX.Y.Z" — so v1.3.0 becomes `own-gem@1.3.0`). Report `generatedOn`
