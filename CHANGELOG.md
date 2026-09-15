@@ -16,17 +16,41 @@ file and refuses to run if `marketplace.json` disagrees.
 2. `node scripts/build.mjs` — regenerates `skills/decision-stack/SKILL.md` and `dist/agents.md`.
 3. `node scripts/build.mjs --check` — must print "all outputs current" (CI runs it too).
 4. `claude plugin validate .`
-5. Bump `CURRENT_INSTRUCTIONS` in app.lunastak.io (`src/lib/import/instructions-version.ts`) — until
-   the app reads www.lunastak.io's `/agents/version.json` instead (agents design, step 4).
-6. app.lunastak.io PR #43 (new channel names + legacy map) is deployed to **production** — otherwise
-   new-named bundles are stored as `unknown`.
-7. Release together with www.lunastak.io's `/agents` (it serves `dist/agents.md` at
-   `https://www.lunastak.io/agents.md`) — the thin pointers fetch it. Always the `www` host: the
-   bare `lunastak.io` 307-redirects to it, and some agent fetchers don't follow cross-host redirects.
+5. Release together with www.lunastak.io's `/agents`: in that repo, `node scripts/sync-agents.mjs --ref v<version>`
+   after tagging. It serves `dist/agents.md` at `https://www.lunastak.io/agents.md`, which the
+   thin pointers fetch, and `/agents/version.json`, which app.lunastak.io reads to tell users an
+   update is out. Always the `www` host: the bare `lunastak.io` 307-redirects to it, and some agent
+   fetchers don't follow cross-host redirects.
+6. **Re-upload the instructions to Lunastak's hosted Gem.** `cp dist/agents.md
+   ~/Downloads/agents-v<version>.txt` (Gem Knowledge rejects `.md`), then in the Gem's Knowledge
+   remove the old `agents-v…txt` and upload the new one. Its instructions refer to the file by pattern, so they
+   don't change. Gems can't fetch URLs, and keep their own copy of a knowledge file (a Drive file
+   doesn't resync either), so the Gem stays on the old version until this step.
+7. When you next touch app.lunastak.io's `src/lib/import/instructions-version.ts`, move its
+   fallback `CURRENT_INSTRUCTIONS` to the new version.
 
 Never hand-edit the two generated files: edit `src/`, then build.
 
 ## [Unreleased]
+
+## [1.3.1] — 2026-09-15
+
+### Fixed
+- **Evidence comes from the user's material, never the assistant's own words.** Lunastak's hosted
+  Gem summarised the memos, then quoted its own summary as the evidence for every chunk — all 15
+  spans were its sentences, none the user's. `agents.md` now defines the source as the documents
+  and messages the user shared, says a sentence the assistant wrote is not evidence, and asks for
+  file names in `sources`; the pre-export checklist repeats it.
+
+### Changed
+- **Gems carry the instructions as a knowledge file.** A Gem can't fetch URLs — in live testing
+  Lunastak's hosted Gem said so and asked for the instructions to be pasted in — so
+  `platforms/gemini-gem.md` now has you upload it to the Gem's Knowledge as
+  `agents-v<version>.txt` (Knowledge rejects `.md`) instead of pointing at the URL — a Gem keeps its own copy (a Drive file
+  doesn't resync either), so the file name shows which version it's on — and the release checklist
+  re-uploads it to the hosted Gem. The Custom GPT
+  and Claude Project templates stay thin pointers.
+- `docs/bundle-format.md` no longer says Gemini has no file uploads — it has.
 
 ## [1.3.0] — 2026-09-15
 

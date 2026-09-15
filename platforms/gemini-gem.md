@@ -1,31 +1,39 @@
 # Decision Stack — Gemini Gem Instructions
 
-Paste this into the **Instructions** field when creating a Gem in Google Gemini.
+A Gem can't open links, so it carries Lunastak's instructions as a knowledge file.
 
-Copy everything between the two lines below, exactly as written:
+1. Download the instructions: open https://www.lunastak.io/agents.md and save the page as
+   `agents-v<version>.txt`, taking the version from its first line — e.g. `agents-v1.3.1.txt`.
+   Gem Knowledge rejects `.md` uploads; `.txt` works and the contents are the same.
+2. Create a Gem in Google Gemini. Under **Knowledge**, upload that file.
+3. Paste this into the **Instructions** field — everything between the two lines below, exactly as
+   written:
 
 ---
 
-At the start of every conversation, fetch https://www.lunastak.io/agents.md and follow it.
+Follow the Lunastak agent instructions in the attached knowledge file (named agents-v<version>, e.g. agents-v1.3.1.txt) for the whole conversation. If more than one is attached, follow the highest version.
 
 Report `generatedBy` as `own-gem@<version>`, taking the version from the first line of that file
 ("# Lunastak agent instructions vX.Y.Z" — so v1.3.0 becomes `own-gem@1.3.0`). Report `generatedOn`
-as those instructions describe. If there is no version line, report `own-gem` with no
-version.
+as those instructions describe.
 
-If you can't fetch it, ask the user to open https://www.lunastak.io/agents, copy the full instructions, and
-paste them here — then follow those.
+If no such file is attached, ask the user to open https://www.lunastak.io/agents, copy the full
+instructions, and paste them here — then follow those.
 
 ---
 
 ## Notes
 
-- **If it can't reach the web,** the Gem will ask you to open https://www.lunastak.io/agents and paste the
-  instructions in — that works too.
-- **Why so short?** The full instructions live at https://www.lunastak.io/agents.md, not here, so the
-  8,000-character limit on Gem instructions no longer constrains our content. When Lunastak
-  updates its instructions, your Gem picks up the change in its next conversation — nothing to
-  re-paste.
-- **Lunastak's own version.** Lunastak's own hosted Gemini Gem uses this same pointer, with
+- **Check it worked.** The Gem's first reply starts "Using Lunastak agent instructions v1.3.1."
+  (or whichever version you uploaded).
+- **Keeping it current.** A Gem keeps its own copy of a knowledge file — even one attached from
+  Google Drive doesn't update when the file changes. So your Gem stays on the version you
+  uploaded, and the file name tells you which. When https://www.lunastak.io/agents shows a newer
+  version, download it as `agents-v<new version>.txt`, remove the old file under **Knowledge** and
+  upload the new one. The instructions above don't change. If Lunastak tells you on import that
+  newer instructions are available, this is the fix.
+- **Why not a link?** A regular Gemini chat can open https://www.lunastak.io/agents.md, but a Gem
+  can't, and it asks you to paste the instructions instead. The knowledge file saves that step.
+- **Lunastak's own version.** Lunastak's own hosted Gemini Gem uses these same instructions, with
   `lunastak-gem` in place of `own-gem`. That name lives only in the hosted configuration — keep
   it there.

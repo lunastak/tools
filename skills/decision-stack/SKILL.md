@@ -146,7 +146,7 @@ When the user says "export", "I'm done", or you've covered enough ground, produc
 {
   "version": "1.0",
   "framework": "decision-stack",
-  "generatedBy": "lunastak-skill@1.3.0",
+  "generatedBy": "lunastak-skill@1.3.1",
   "generatedOn": "claude-code | codex | cursor | claude.ai | other",
   "preparedAt": "2026-03-28T10:00:00Z",
   "mode": "context_dump | exploration | deep_dive | gap_analysis",
@@ -189,7 +189,7 @@ If the user asks for a generic format (or you're unsure which dimensions apply),
 {
   "version": "1.0",
   "framework": "decision-stack",
-  "generatedBy": "lunastak-skill@1.3.0",
+  "generatedBy": "lunastak-skill@1.3.1",
   "generatedOn": "claude-code | codex | cursor | claude.ai | other",
   "preparedAt": "2026-03-28T10:00:00Z",
   "chunks": [
@@ -207,7 +207,7 @@ If the user asks for a generic format (or you're unsure which dimensions apply),
 
 The `chunks` format is simpler to produce and lets Lunastak's proprietary dimensional analysis handle classification. Use `themes` (with area keys) when you're confident in the dimensional mapping; use `chunks` when the themes don't map cleanly to a single dimension.
 
-`generatedBy` is exactly `lunastak-skill@1.3.0` — copy it as written, never change or omit it, even when resuming from an earlier bundle (write this value, never copy the old bundle's). `generatedOn` names where you are running: one of `claude-code | codex | cursor | claude.ai | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
+`generatedBy` is exactly `lunastak-skill@1.3.1` — copy it as written, never change or omit it, even when resuming from an earlier bundle (write this value, never copy the old bundle's). `generatedOn` names where you are running: one of `claude-code | codex | cursor | claude.ai | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
 
 After producing the JSON, say:
 
