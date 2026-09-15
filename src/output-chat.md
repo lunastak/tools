@@ -39,9 +39,12 @@ Code plugin — leave them out here.
 
 The chunk format lets Lunastak's extraction pipeline handle dimensional classification automatically.
 
-Each evidence span is one unbroken stretch of the source, copied as-is: no `...` joining two
-passages, no tidied wording. If a timestamp or speaker label interrupts the passage in a
-transcript, end the span there and start a new one after it.
+The source is the user's material — the documents they shared and the messages they wrote —
+never your own replies, summaries or coverage notes. A sentence you wrote is not evidence, however
+accurately it sums them up. Each evidence span is one unbroken stretch of that material, copied
+as-is: no `...` joining two passages, no tidied wording. If a timestamp or speaker label
+interrupts the passage in a transcript, end the span there and start a new one after it. Name the
+documents in `sources` by their file names.
 
 **Area keys** (for `area` in `openQuestions` and `areas` in `tensions`): `CUSTOMER_MARKET`, `PROBLEM_OPPORTUNITY`, `VALUE_PROPOSITION`, `COMPETITIVE_LANDSCAPE`, `BUSINESS_MODEL_ECONOMICS`, `GO_TO_MARKET`, `PRODUCT_EXPERIENCE`, `CAPABILITIES_ASSETS`, `RISKS_CONSTRAINTS`, `STRATEGIC_INTENT`
 

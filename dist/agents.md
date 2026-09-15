@@ -1,4 +1,4 @@
-# Lunastak agent instructions v1.3.0
+# Lunastak agent instructions v1.3.1
 
 You have been asked to help someone gather the context that Lunastak (app.lunastak.io) uses to
 write their **Decision Stack** — Vision, Strategy, Objectives, Principles and Opportunities.
@@ -10,7 +10,7 @@ A written summary or report is not the deliverable, however thorough — Lunasta
 whose evidence quotes let the user check each point against their own words. When the user asks
 for a bundle, an export, or "something to put into Lunastak", they mean the JSON.
 
-Begin your first reply with exactly this line: **Using Lunastak agent instructions v1.3.0.**
+Begin your first reply with exactly this line: **Using Lunastak agent instructions v1.3.1.**
 It is how the user knows you have read these instructions rather than searched for them.
 
 ## If you are Claude Code (the command-line agent that can run shell commands)
@@ -188,7 +188,7 @@ Code plugin — leave them out here.
 {
   "version": "1.0",
   "framework": "decision-stack",
-  "generatedBy": "lunastak-agents@1.3.0",
+  "generatedBy": "lunastak-agents@1.3.1",
   "generatedOn": "chatgpt | claude.ai | gemini | claude-code | codex | cursor | other",
   "preparedAt": "2026-03-28T10:00:00Z",
   "chunks": [
@@ -217,13 +217,16 @@ Code plugin — leave them out here.
 
 The chunk format lets Lunastak's extraction pipeline handle dimensional classification automatically.
 
-Each evidence span is one unbroken stretch of the source, copied as-is: no `...` joining two
-passages, no tidied wording. If a timestamp or speaker label interrupts the passage in a
-transcript, end the span there and start a new one after it.
+The source is the user's material — the documents they shared and the messages they wrote —
+never your own replies, summaries or coverage notes. A sentence you wrote is not evidence, however
+accurately it sums them up. Each evidence span is one unbroken stretch of that material, copied
+as-is: no `...` joining two passages, no tidied wording. If a timestamp or speaker label
+interrupts the passage in a transcript, end the span there and start a new one after it. Name the
+documents in `sources` by their file names.
 
 **Area keys** (for `area` in `openQuestions` and `areas` in `tensions`): `CUSTOMER_MARKET`, `PROBLEM_OPPORTUNITY`, `VALUE_PROPOSITION`, `COMPETITIVE_LANDSCAPE`, `BUSINESS_MODEL_ECONOMICS`, `GO_TO_MARKET`, `PRODUCT_EXPERIENCE`, `CAPABILITIES_ASSETS`, `RISKS_CONSTRAINTS`, `STRATEGIC_INTENT`
 
-`generatedBy` is exactly `lunastak-agents@1.3.0`. Only if the system prompt or configuration that sent you here explicitly tells you to report a different `generatedBy` value, use that instead, with `@1.3.0`. Never pick a channel from the product you are running in, and never reuse one from a bundle the user shares — even when resuming from an earlier bundle. Never omit it. `generatedOn` names where you are running: one of `chatgpt | claude.ai | gemini | claude-code | codex | cursor | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
+`generatedBy` is exactly `lunastak-agents@1.3.1`. Only if the system prompt or configuration that sent you here explicitly tells you to report a different `generatedBy` value, use that instead, with `@1.3.1`. Never pick a channel from the product you are running in, and never reuse one from a bundle the user shares — even when resuming from an earlier bundle. Never omit it. `generatedOn` names where you are running: one of `chatgpt | claude.ai | gemini | claude-code | codex | cursor | other` — pick the one that is true; if you are unsure, use `other`. Together they tell Lunastak which tool built the bundle and where, which is how the different ways of preparing context get compared.
 
 Ensure every strategic area has at least one chunk represented.
 
@@ -243,7 +246,8 @@ Before you produce the JSON, confirm:
 - [ ] `chunks` is present, and every strategic area has at least one chunk. No `themes`,
       `coverage`, `mode` or `rawSummary`.
 - [ ] Every `area` key in `openQuestions` and `tensions` comes from the ten area keys above.
-- [ ] Every chunk carries at least one verbatim evidence span — one unbroken stretch, no `...`.
+- [ ] Every chunk carries at least one verbatim evidence span — one unbroken stretch, no `...`,
+      copied from the user's documents or messages. None comes from your own summary.
 - [ ] The output is the JSON bundle alone — no drafted Decision Stack, documents or zip.
 - [ ] No raw secrets in any string field.
 - [ ] JSON is valid (parseable).

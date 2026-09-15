@@ -22,8 +22,8 @@ file and refuses to run if `marketplace.json` disagrees.
    update is out. Always the `www` host: the bare `lunastak.io` 307-redirects to it, and some agent
    fetchers don't follow cross-host redirects.
 6. **Re-upload the instructions to Lunastak's hosted Gem.** `cp dist/agents.md
-   ~/Downloads/agents-v<version>.md`, then in the Gem's Knowledge remove the old
-   `agents-v…md` and upload the new one. Its instructions refer to the file by pattern, so they
+   ~/Downloads/agents-v<version>.txt` (Gem Knowledge rejects `.md`), then in the Gem's Knowledge
+   remove the old `agents-v…txt` and upload the new one. Its instructions refer to the file by pattern, so they
    don't change. Gems can't fetch URLs, and keep their own copy of a knowledge file (a Drive file
    doesn't resync either), so the Gem stays on the old version until this step.
 7. When you next touch app.lunastak.io's `src/lib/import/instructions-version.ts`, move its
@@ -33,11 +33,20 @@ Never hand-edit the two generated files: edit `src/`, then build.
 
 ## [Unreleased]
 
+## [1.3.1] — 2026-09-15
+
+### Fixed
+- **Evidence comes from the user's material, never the assistant's own words.** Lunastak's hosted
+  Gem summarised the memos, then quoted its own summary as the evidence for every chunk — all 15
+  spans were its sentences, none the user's. `agents.md` now defines the source as the documents
+  and messages the user shared, says a sentence the assistant wrote is not evidence, and asks for
+  file names in `sources`; the pre-export checklist repeats it.
+
 ### Changed
 - **Gems carry the instructions as a knowledge file.** A Gem can't fetch URLs — in live testing
   Lunastak's hosted Gem said so and asked for the instructions to be pasted in — so
   `platforms/gemini-gem.md` now has you upload it to the Gem's Knowledge as
-  `agents-v<version>.md` instead of pointing at the URL — a Gem keeps its own copy (a Drive file
+  `agents-v<version>.txt` (Knowledge rejects `.md`) instead of pointing at the URL — a Gem keeps its own copy (a Drive file
   doesn't resync either), so the file name shows which version it's on — and the release checklist
   re-uploads it to the hosted Gem. The Custom GPT
   and Claude Project templates stay thin pointers.
