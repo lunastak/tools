@@ -21,9 +21,11 @@ file and refuses to run if `marketplace.json` disagrees.
    thin pointers fetch, and `/agents/version.json`, which app.lunastak.io reads to tell users an
    update is out. Always the `www` host: the bare `lunastak.io` 307-redirects to it, and some agent
    fetchers don't follow cross-host redirects.
-6. **Re-upload `dist/agents.md` to Lunastak's hosted Gem** (its Knowledge; replace the old file).
-   Gems can't fetch URLs, so the Gem carries the file itself and stays on the old version until
-   this step.
+6. **Re-upload the instructions to Lunastak's hosted Gem.** `cp dist/agents.md
+   ~/Downloads/agents-v<version>.md`, then in the Gem's Knowledge remove the old
+   `agents-v…md` and upload the new one. Its instructions refer to the file by pattern, so they
+   don't change. Gems can't fetch URLs, and keep their own copy of a knowledge file (a Drive file
+   doesn't resync either), so the Gem stays on the old version until this step.
 7. When you next touch app.lunastak.io's `src/lib/import/instructions-version.ts`, move its
    fallback `CURRENT_INSTRUCTIONS` to the new version.
 
@@ -34,8 +36,10 @@ Never hand-edit the two generated files: edit `src/`, then build.
 ### Changed
 - **Gems carry the instructions as a knowledge file.** A Gem can't fetch URLs — in live testing
   Lunastak's hosted Gem said so and asked for the instructions to be pasted in — so
-  `platforms/gemini-gem.md` now has you upload `agents.md` to the Gem's Knowledge instead of
-  pointing at the URL, and the release checklist re-uploads it to the hosted Gem. The Custom GPT
+  `platforms/gemini-gem.md` now has you upload it to the Gem's Knowledge as
+  `agents-v<version>.md` instead of pointing at the URL — a Gem keeps its own copy (a Drive file
+  doesn't resync either), so the file name shows which version it's on — and the release checklist
+  re-uploads it to the hosted Gem. The Custom GPT
   and Claude Project templates stay thin pointers.
 - `docs/bundle-format.md` no longer says Gemini has no file uploads — it has.
 
